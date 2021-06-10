@@ -46,11 +46,27 @@ const Toolbar = ({
     }
   }
 
+  const handleDownload = () => {
+    let download = files
+      .filter((file) => selectedFiles.includes(file.id))
+      .map((file) => {
+        return {
+          path: file.path,
+          device: file.device,
+        }
+      })
+    window.alert(JSON.stringify(download))
+  }
+
   return (
     <Container>
       <Checkbox status={status} onChange={() => handleChange()} />
-      <h3>Selected</h3>
-      <h3>Download</h3>
+      {selectedFiles.length > 0 ? (
+        <h3>Selected {selectedFiles.length}</h3>
+      ) : (
+        <h3>None Selected</h3>
+      )}
+      <button onClick={() => handleDownload()}>Download</button>
     </Container>
   )
 }
