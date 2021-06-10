@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { selectAllFiles, deselectAllFiles } from '../actions/file'
 
 import Checkbox from './Checkbox'
+import { colors, spaces } from '../style/global'
 
 const Toolbar = ({
   selectAllFiles,
@@ -60,18 +61,35 @@ const Toolbar = ({
 
   return (
     <Container>
-      <Checkbox checked={checked} onChange={() => handleChange()} />
+      <CheckboxContainer>
+        <Checkbox checked={checked} onChange={() => handleChange()} />
+      </CheckboxContainer>
       {selectedFiles.length > 0 ? (
-        <h3>Selected {selectedFiles.length}</h3>
+        <Title>Selected {selectedFiles.length}</Title>
       ) : (
-        <h3>None Selected</h3>
+        <Title>None Selected</Title>
       )}
-      <button onClick={() => handleDownload()}>Download</button>
+      <button onClick={() => handleDownload()}>
+        <Title>⤓ Download</Title>
+      </button>
     </Container>
   )
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+`
+
+const CheckboxContainer = styled.div`
+  padding: ${spaces.regular};
+`
+
+const Title = styled.h3`
+  margin: 0 ${spaces.regular} 0 ${spaces.regular};
+`
 
 Toolbar.propTypes = {
   selectAllFiles: PropTypes.func.isRequired,

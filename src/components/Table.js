@@ -29,6 +29,8 @@ const Table = ({ file: { files } }) => {
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
+
+  border-top: 1px solid ${colors.highlightSecondary};
 `
 
 const StyledHeaders = styled.th`

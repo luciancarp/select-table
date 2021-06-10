@@ -12,8 +12,14 @@ const Layout = ({ children }) => {
 }
 
 const Content = styled.main`
-  margin: 0 auto;
   max-width: 1024px;
+  height: 100vh;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
 Layout.propTypes = {

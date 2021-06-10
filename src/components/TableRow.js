@@ -54,7 +54,7 @@ const TableRow = ({
 }
 
 const StyledRow = styled.tr`
-  border: 1px solid ${colors.highlightSecondary};
+  border-top: 1px solid ${colors.highlightSecondary};
 
   background-color: ${(props) =>
     props.selected ? `${colors.highlight}` : null};

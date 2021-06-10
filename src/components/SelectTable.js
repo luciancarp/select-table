@@ -8,6 +8,8 @@ import { getFiles } from '../actions/file'
 import Toolbar from './Toolbar'
 import Table from './Table'
 
+import { colors } from '../style/global'
+
 const SelectTable = ({ getFiles, file: { selectedFile, files } }) => {
   useEffect(() => {
     getFiles()
@@ -21,7 +23,12 @@ const SelectTable = ({ getFiles, file: { selectedFile, files } }) => {
   )
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  width: 100%;
+
+  border: 1px solid ${colors.highlightSecondary};
+  box-shadow: 0px 2px 10px ${colors.highlight};
+`
 
 SelectTable.propTypes = {
   getFiles: PropTypes.func.isRequired,
