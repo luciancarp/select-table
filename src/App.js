@@ -9,14 +9,14 @@ import GlobalStyle from './style/GlobalStyle'
 
 //Components
 import Layout from './components/Layout'
-import Table from './components/Table'
+import SelectTable from './components/SelectTable'
 
 const App = () => {
   return (
     <Provider store={store}>
       <GlobalStyle />
       <Layout>
-        <Table />
+        <SelectTable />
       </Layout>
     </Provider>
   )

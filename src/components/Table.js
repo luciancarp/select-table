@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux'
+import TableRow from './TableRow'
 
-import { getFiles } from '../actions/file'
-
-const Table = ({ getFiles, file: { selectedFile, files } }) => {
-  useEffect(() => {
-    getFiles()
-  }, [getFiles])
-
+const Table = ({ file: { files } }) => {
   return (
     <StyledTable>
       <tr>
@@ -18,6 +14,10 @@ const Table = ({ getFiles, file: { selectedFile, files } }) => {
         <th>Path</th>
         <th>Status</th>
       </tr>
+
+      {files.map((file) => (
+        <TableRow id={file.id} />
+      ))}
     </StyledTable>
   )
 }
@@ -27,7 +27,6 @@ const StyledTable = styled.table`
 `
 
 Table.propTypes = {
-  getFiles: PropTypes.func.isRequired,
   file: PropTypes.object.isRequired,
 }
 
@@ -35,6 +34,4 @@ const mapStateToProps = (state) => ({
   file: state.file,
 })
 
-export default connect(mapStateToProps, {
-  getFiles,
-})(Table)
+export default connect(mapStateToProps, {})(Table)
