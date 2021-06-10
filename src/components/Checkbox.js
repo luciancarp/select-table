@@ -31,7 +31,9 @@ const Checkbox = ({ checked, onChange }) => {
   )
 }
 
-const StyledCheckbox = styled.input``
+const StyledCheckbox = styled.input`
+  transform: scale(1.25);
+`
 
 Checkbox.propTypes = {
   onChange: PropTypes.func,

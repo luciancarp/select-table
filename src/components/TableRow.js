@@ -35,7 +35,10 @@ const TableRow = ({
   )
 
   return (
-    <StyledRow selected={selectedFiles.includes(id)}>
+    <StyledRow
+      selected={selectedFiles.includes(id)}
+      onClick={() => handleCheck()}
+    >
       <StyledData>
         <Checkbox checked={checked} onChange={() => handleCheck()} />
       </StyledData>
@@ -56,12 +59,18 @@ const TableRow = ({
 const StyledRow = styled.tr`
   border-top: 1px solid ${colors.highlightSecondary};
 
+  transition: background-color 0.2s;
+  -webkit-transition: background-color 0.2s;
+  transition-timing-function: ease-out;
+
   background-color: ${(props) =>
     props.selected ? `${colors.highlight}` : null};
 
   :hover {
     background-color: ${colors.highlightSecondary};
   }
+
+  cursor: pointer;
 `
 
 const StyledData = styled.td`
@@ -88,7 +97,7 @@ const Circle = styled.div`
 
   border-radius: 50%;
 
-  background-color: green;
+  background-color: lightgreen;
 `
 
 TableRow.propTypes = {

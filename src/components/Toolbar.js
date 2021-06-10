@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { selectAllFiles, deselectAllFiles } from '../actions/file'
 
 import Checkbox from './Checkbox'
-import { colors, spaces } from '../style/global'
+import { spaces } from '../style/global'
 
 const Toolbar = ({
   selectAllFiles,
@@ -49,7 +49,9 @@ const Toolbar = ({
 
   const handleDownload = () => {
     let download = files
-      .filter((file) => selectedFiles.includes(file.id))
+      .filter(
+        (file) => selectedFiles.includes(file.id) && file.status === 'available'
+      )
       .map((file) => {
         return {
           path: file.path,
@@ -70,7 +72,7 @@ const Toolbar = ({
         <Title>None Selected</Title>
       )}
       <button onClick={() => handleDownload()}>
-        <Title>⤓ Download</Title>
+        <Title>⤓ Download Selected</Title>
       </button>
     </Container>
   )

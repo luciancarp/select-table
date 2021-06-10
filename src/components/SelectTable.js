@@ -10,7 +10,7 @@ import Table from './Table'
 
 import { colors } from '../style/global'
 
-const SelectTable = ({ getFiles, file: { selectedFile, files } }) => {
+const SelectTable = ({ getFiles }) => {
   useEffect(() => {
     getFiles()
   }, [getFiles])
@@ -27,6 +27,8 @@ const Container = styled.div`
   width: 100%;
 
   border: 1px solid ${colors.highlightSecondary};
+  border-radius: 5px;
+
   box-shadow: 0px 2px 10px ${colors.highlight};
 `
 
@@ -35,10 +37,6 @@ SelectTable.propTypes = {
   file: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state) => ({
-  file: state.file,
-})
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   getFiles,
 })(SelectTable)
