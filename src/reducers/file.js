@@ -1,10 +1,11 @@
-import { SELECT_FILE } from '../actions/types'
+import { SELECT_FILE, GET_FILES } from '../actions/types'
 
 const initialState = {
   selectedFiles: [],
+  files: [],
 }
 
-export default function (state = initialState, action) {
+const fileReducer = (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
@@ -13,7 +14,14 @@ export default function (state = initialState, action) {
         ...state,
         selectedFiles: [...state.selectedFiles, payload],
       }
+    case GET_FILES:
+      return {
+        ...state,
+        files: [...payload],
+      }
     default:
       return state
   }
 }
+
+export default fileReducer
