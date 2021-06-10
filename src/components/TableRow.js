@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { selectFile, deselectFile } from '../actions/file'
 
+import Checkbox from './Checkbox'
+
 const TableRow = ({
   selectFile,
   deselectFile,
@@ -13,15 +15,15 @@ const TableRow = ({
 }) => {
   const rowData = files.find((file) => file.id === id)
 
-  let checked = selectedFiles.includes(id)
+  let checked = selectedFiles.includes(id) ? 1 : -1
 
   const handleCheck = () => {
-    checked ? deselectFile(id) : selectFile(id)
+    checked === 1 ? deselectFile(id) : selectFile(id)
   }
 
   return (
     <StyledRow>
-      <input type='checkbox' checked={checked} onChange={() => handleCheck()} />
+      <Checkbox status={checked} onChange={() => handleCheck()} />
       <td>{rowData.name}</td>
       <td>{rowData.device}</td>
       <td>{rowData.path}</td>
