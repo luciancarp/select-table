@@ -3,16 +3,20 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
+
+import { colors, spaces } from '../style/global'
+
 import TableRow from './TableRow'
 
 const Table = ({ file: { files } }) => {
   return (
     <StyledTable>
       <tr>
-        <th>Name</th>
-        <th>Device</th>
-        <th>Path</th>
-        <th>Status</th>
+        <StyledHeaders />
+        <StyledHeaders>Name</StyledHeaders>
+        <StyledHeaders>Device</StyledHeaders>
+        <StyledHeaders>Path</StyledHeaders>
+        <StyledHeaders>Status</StyledHeaders>
       </tr>
 
       {files.map((file) => (
@@ -24,6 +28,11 @@ const Table = ({ file: { files } }) => {
 
 const StyledTable = styled.table`
   width: 100%;
+  border-collapse: collapse;
+`
+
+const StyledHeaders = styled.th`
+  padding: ${spaces.regular};
 `
 
 Table.propTypes = {

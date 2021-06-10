@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { selectFile, deselectFile } from '../actions/file'
 
 import Checkbox from './Checkbox'
+import { colors, spaces } from '../style/global'
 
 const TableRow = ({
   selectFile,
@@ -21,18 +22,74 @@ const TableRow = ({
     checked === 1 ? deselectFile(id) : selectFile(id)
   }
 
+  const ScheduledStatus = () => (
+    <>
+      <span>Scheduled</span>
+    </>
+  )
+  const AvailableStatus = () => (
+    <AvailableContainer>
+      <Circle />
+      <span>Available</span>
+    </AvailableContainer>
+  )
+
   return (
-    <StyledRow>
-      <Checkbox status={checked} onChange={() => handleCheck()} />
-      <td>{rowData.name}</td>
-      <td>{rowData.device}</td>
-      <td>{rowData.path}</td>
-      <td>{rowData.status}</td>
+    <StyledRow selected={selectedFiles.includes(id)}>
+      <StyledData>
+        <Checkbox checked={checked} onChange={() => handleCheck()} />
+      </StyledData>
+      <StyledData>{rowData.name}</StyledData>
+      <StyledData>{rowData.device}</StyledData>
+      <StyledData>{rowData.path}</StyledData>
+      <StyledData>
+        {rowData.status === 'available' ? (
+          <AvailableStatus />
+        ) : (
+          <ScheduledStatus />
+        )}
+      </StyledData>
     </StyledRow>
   )
 }
 
-const StyledRow = styled.tr``
+const StyledRow = styled.tr`
+  border: 1px solid ${colors.highlightSecondary};
+
+  background-color: ${(props) =>
+    props.selected ? `${colors.highlight}` : null};
+
+  :hover {
+    background-color: ${colors.highlightSecondary};
+  }
+`
+
+const StyledData = styled.td`
+  padding: ${spaces.regular};
+
+  text-align: left;
+  vertical-align: middle;
+`
+
+const AvailableContainer = styled.div`
+  margin-left: -3.5rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+
+const Circle = styled.div`
+  width: ${spaces.regular};
+  height: ${spaces.regular};
+
+  margin-right: ${spaces.narrow};
+
+  border-radius: 50%;
+
+  background-color: green;
+`
 
 TableRow.propTypes = {
   selectFile: PropTypes.func.isRequired,

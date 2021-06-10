@@ -12,26 +12,26 @@ const Toolbar = ({
   deselectAllFiles,
   file: { selectedFiles, files },
 }) => {
-  const [status, setStatus] = useState(-1)
+  const [checked, setChecked] = useState(-1)
 
   useEffect(() => {
-    const getCheckboxStatus = (selected, all) => {
-      let status = 1
+    const getCheckboxChecked = (selected, all) => {
+      let checked = 1
 
       if (selected.length === 0) return -1
 
       for (let i = 0; i < all.length; i++) {
         if (!selected.includes(all[i])) {
-          status = 0
+          checked = 0
           break
         }
       }
 
-      return status
+      return checked
     }
 
-    setStatus(
-      getCheckboxStatus(
+    setChecked(
+      getCheckboxChecked(
         selectedFiles,
         files.map((file) => file.id)
       )
@@ -39,7 +39,7 @@ const Toolbar = ({
   }, [selectedFiles, files])
 
   const handleChange = () => {
-    if (status === -1 || status === 0) {
+    if (checked === -1 || checked === 0) {
       selectAllFiles()
     } else {
       deselectAllFiles()
@@ -60,7 +60,7 @@ const Toolbar = ({
 
   return (
     <Container>
-      <Checkbox status={status} onChange={() => handleChange()} />
+      <Checkbox checked={checked} onChange={() => handleChange()} />
       {selectedFiles.length > 0 ? (
         <h3>Selected {selectedFiles.length}</h3>
       ) : (

@@ -32,6 +32,8 @@ export const screenSizes = {
 
 export const colors = {
   primary: '#aaf0d1',
-  background: '#ddd',
+  background: '#fff',
   text: '#333',
+  highlight: '#ddd',
+  highlightSecondary: '#eee',
 }

@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
 
 const Content = styled.main`
   margin: 0 auto;
-  max-width: 700px;
+  max-width: 1024px;
 `
 
 Layout.propTypes = {
